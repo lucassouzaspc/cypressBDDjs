@@ -1,0 +1,29 @@
+{
+  "name": "cypressbdd",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "cypress-cucumber-preprocessor": {
+    "step_definitions": "./cypress/**/",
+    "cucumberJson": {
+      "generate": true,
+      "outputFolder": "reports/cucumber-json",
+      "filePrefix": "",
+      "fileSuffix": ".cucumber"
+    }
+  },
+  "scripts": {
+    "cy:open:dev": "npm run delete:reports && npx cypress open --config-file cypress.config.js",
+    "cy:open:qa": "npm run delete:reports && npx cypress open --config-file env-qa.config.js",
+    "delete:reports": "for /d %x in (reports\\*) do @rmdir /s /q \"%x\" && del /q reports\\*.*",
+    "report:cucumber": "node cucumber-html-report.js && start reports/cucumber-html/index.html"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cypress": "^12.9.0",
+    "cypress-cucumber-preprocessor": "^4.3.1",
+    "multiple-cucumber-html-reporter": "^3.3.0"
+  }
+}
